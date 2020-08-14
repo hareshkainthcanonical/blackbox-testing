@@ -43,15 +43,11 @@ services:
       Registry_Host: edgex-core-consul
       Service_Port: 48095
       MessageBus_SubscribeHost_Host: edgex-core-data
-    networks:
-      edgex-network:
-        aliases:
-          - edgex-app-service-configurable
+    network_mode: "host"
 
   postman:
     image: ${postman}
-    networks:
-      - edgex-network
+    network_mode: "host"
     privileged: true
     volumes:
       - type: bind
@@ -60,10 +56,3 @@ services:
       - type: bind
         source: ./bin/testResult
         target: /etc/newman/newman/
-
-networks:
-  edgex-network:
-    external:
-     name: edgex_edgex-network
-
-
