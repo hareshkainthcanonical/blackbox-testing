@@ -1,15 +1,16 @@
 #!/bin/bash
 
-COMPOSE=$(dirname "$0")/../$(ls $(dirname "$0")/../ | awk '/docker-compose/ && !/test-tools/')
-OT=$(docker-compose -f ${COMPOSE} run --rm --entrypoint /edgex/security-proxy-setup edgex-proxy --init=false --useradd=jerry --group=admin | grep '^the access token for')
-export TOKEN=$( echo $OT | sed 's/.*: \([^.]*\.[^.]*\.[^.]*\).*/\1/')
+OT=$(sudo edgexfoundry.security-proxy-setup-cmd --confdir=/var/snap/edgexfoundry/current/config/security-proxy-setup/res --init=false --useradd=jerry --group=admin | grep '^the access token for')
+TOKEN=$(echo $OT | sed 's/.*: \([^.]*\.[^.]*\.[^.]*\).*/\1/')
+export TOKEN
 
-#echo TOKEN=$TOKEN
+echo TOKEN_VALUE: $TOKEN
 
-RT=$(docker exec -i edgex-vault-worker sh -c "cat /tmp/edgex/secrets/edgex-security-proxy-setup/secrets-token.json")
-export VAULTKEY=$(echo $RT | sed 's/.*"client_token":"\([^"]*\)".*/\1/')
+RT=$(sudo sh -c "cat /var/snap/edgexfoundry/current/secrets/edgex-security-proxy-setup/secrets-token.json")
+VAULTKEY=$(echo $RT | sed 's/.*"client_token":"\([^"]*\)".*/\1/')
+export VAULTKEY
 
-#echo VAULTKEY=$VAULTKEY
+echo VAULT_KEY: $VAULTKEY
 
 echo "Info:Securityservice Setup Completed."
 

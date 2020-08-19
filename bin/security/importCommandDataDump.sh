@@ -1,7 +1,7 @@
 #!/bin/bash
 
 COLLECTION_PATH="collections/core-command-importer.postman_collection.json"
-ENV_PATH="environment/core-metadata-docker-security.postman_environment.json"
+ENV_PATH="environment/core-metadata-security.postman_environment.json"
 
 
 echo "Info: import CoreCommand's test data."
