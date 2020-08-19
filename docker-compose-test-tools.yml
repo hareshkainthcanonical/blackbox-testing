@@ -46,15 +46,14 @@ services:
       Database_Host: edgex-mongo
       Database_Username: appservice
       Database_Password: password
-    networks:
-      edgex-network:
-        aliases:
-          - edgex-app-service-configurable
+#    networks:
+#      edgex-network:
+#        aliases:
+#          - edgex-app-service-configurable
 
   postman:
     image: ${postman}
-    networks:
-      - edgex-network
+    network_mode: "host"
     privileged: true
     volumes:
       - type: bind
@@ -64,9 +63,9 @@ services:
         source: ./bin/testResult
         target: /etc/newman/newman/
 
-networks:
-  edgex-network:
-    external:
-     name: ${network}
+#networks:
+#  edgex-network:
+#    external:
+#     name: ${network}
 
 
