@@ -29,23 +29,23 @@ services:
   # Application Services
   #################################################################
 
-#  app-service-configurable:
-#    image: ${appService}
-#    ports:
-#      - "48095:48095"
-#    container_name: edgex-app-service-configurable
-#    hostname: app-service-configurable
-#    environment:
-#      EDGEX_SECURITY_SECRET_STORE: "false" # required since SecretStore not used and not configured
-#      edgex_profile: blackbox-tests
-#      Service_Host: app-service-configurable
-#      Clients_CoreData_Host: edgex-core-data
-#      Registry_Host: edgex-core-consul
-#      Service_Port: 48095
-#      MessageBus_SubscribeHost_Host: edgex-core-data
-#      Database_Host: edgex-mongo
-#      Database_Username: appservice
-#      Database_Password: password
+  app-service-configurable:
+    image: ${appService}
+    ports:
+      - "48095:48095"
+    container_name: edgex-app-service-configurable
+    hostname: app-service-configurable
+    environment:
+      EDGEX_SECURITY_SECRET_STORE: "false" # required since SecretStore not used and not configured
+      edgex_profile: blackbox-tests
+      Service_Host: app-service-configurable
+      Clients_CoreData_Host: edgex-core-data
+      Registry_Host: edgex-core-consul
+      Service_Port: 48095
+      MessageBus_SubscribeHost_Host: edgex-core-data
+      Database_Host: edgex-mongo
+      Database_Username: appservice
+      Database_Password: password
 #    networks:
 #      edgex-network:
 #        aliases:
