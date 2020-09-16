@@ -2,6 +2,12 @@
 
 echo "Installing the required snaps for testing..."
 
-sudo snap install edgexfoundry --edge && sudo snap install edgex-app-service-configurable
+echo "Will install edgexfoundry (edge)..."
+
+sudo snap install edgexfoundry --edge
+
+echo "Will install edgex-app-service-configurable (stable)..."
+
+sudo snap install edgex-app-service-configurable
 
 echo "Installing the required snaps for testing...Done"
