@@ -1,7 +1,7 @@
 #!/bin/bash
 
 COLLECTION_PATH="collections/support-scheduler-cleaner.postman_collection.json"
-ENV_PATH="environment/support-scheduler-docker.postman_environment.json"
+ENV_PATH="environment/support-scheduler.postman_environment.json"
 
 
 echo "Info: Clean Support Scheduler's test data."

@@ -3,8 +3,10 @@
 # Set security environment variable. This is mostly cosmetic as the tests will display warnings that
 # the env is not set.
 if [ "$SECURITY_SERVICE_NEEDED" = "true" ]; then
+  echo "In security mode: true"
 	export SECURITY_IS_ON="true"
 else
+  echo "In security mode: false"
 	export SECURITY_IS_ON="false"
 fi
 
@@ -12,7 +14,8 @@ fi
 set -o pipefail
 
 # Run the compose file for blackbox testing
-docker-compose -f ${docker_compose_test_tools} up -d app-service-configurable
+#export network=$(docker network ls | awk '{print $2}' | grep edgex-network)
+#docker-compose -f ${docker_compose_test_tools} up -d app-service-configurable
 
 TIMESTAMPFORMAT=$(date +%d-%m-%Y_%H%M%S)
 BASEPATH=$(dirname "$0")/postman-test/scriptLogs
