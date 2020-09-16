@@ -8,6 +8,6 @@ sudo snap install edgexfoundry --edge
 
 echo "Will install edgex-app-service-configurable (stable)..."
 
-sudo snap install edgex-app-service-configurable
+sudo snap install edgex-app-service-configurable --edge
 
 echo "Installing the required snaps for testing...Done"
