@@ -151,7 +151,14 @@ sh $(dirname "$0")/banner.sh
 #Create testResult for postman
 [ -d "$(dirname "$0")/testResult" ] || mkdir $(dirname "$0")/testResult
 
-case $1 in
+for var in "$@"
+do
+case $var in
+-localhost)
+	echo "Info: Localhost testing"
+	NATIVE_TEST_ENV=true
+	export NATIVE_TEST_ENV
+	;;
 -sec)
 	echo "Info: Initiating Securityservice Test"
 	securityTest | tee $SECURITYLOGSPATH
@@ -198,6 +205,7 @@ case $1 in
 	exit 0
 	;;
 esac
+done
 
 echo
 echo "Info: Logs available in [scriptLogs]"

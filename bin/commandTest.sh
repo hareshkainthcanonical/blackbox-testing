@@ -3,7 +3,15 @@
 NAMESFILE=$(dirname "$0")/files.sh
 
 COLLECTION_PATH="collections/core-command.postman_collection.json"
-ENV_PATH="environment/core-command.postman_environment.json"
+
+if [ "$NATIVE_TEST_ENV" = "true" ]; then
+  echo "Testing against native EdgeX"
+  ENV_PATH="environment/core-command.postman_environment.json"
+else
+  echo "Testing against docker EdgeX"
+  ENV_PATH="environment/core-command-docker.postman_environment.json"
+fi
+
 
 if [ -f $NAMESFILE ]; then 
 
@@ -16,6 +24,7 @@ else
 fi
 
 echo "Info: Initiating Command Test."
+echo "ENV_PATH = "$ENV_PATH
 
 echo "[info] ---------- use docker-compose run newman ----------"
 
